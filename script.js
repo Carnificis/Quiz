@@ -5,8 +5,11 @@ var question = document.querySelector(".quiz_header")
 var options = document.querySelectorAll(".option")
 quizContainer.style.display ="none"
 resultsContainer.style.display="none"
+var score = 0
 var currentQ = 0
-
+for(let i =0;i<4;i++){
+	options[i].addEventListener("click",evaluateResults)
+}
 
 
 
@@ -18,8 +21,20 @@ var currentQ = 0
 		}
 	}
 
-	function showResults(questions, quizContainer, resultsContainer){
+	function evaluateResults(event){
 		// code will go here
+		console.log(event.target.textContent)
+		if(event.target.textContent == myQuestions[currentQ].correctAnswer){
+			score +=5
+		}else{
+
+		}
+		if(currentQ < myQuestions.length-1){
+			currentQ++;
+			showQuestions()
+		}else{
+			showResults()
+		}
 	}
 
 	// show the questions
@@ -34,52 +49,59 @@ var myQuestions = [
 			 'JavaSchool',
 			 'JavaPuzzle'
 		],
-		correctAnswer: '0'
+		correctAnswer: 'JavaScript'
 	},
 	{
 		question: "What is NOT a coding language?",
-		answers: {
-			a: 'HTML',
-			b: 'C++',
-			c: 'PDQ'
-		},
-		correctAnswer: 'c'
+		answers: [
+			 'HTML',
+			 'C++',
+			 'PDQ',
+			 'Python'
+		],
+		
+		correctAnswer: 'PDQ'
 	},
 		{question: "What does DRY stand for in coding?",
-		answers: {
-			a: 'Develop, Rejoice, Yay',
-			b: 'Do not Repeat Yourself',
-			c: 'Do Required Yoga'
-		},
-		correctAnswer: 'b'
+		answers: [
+			'Develop, Rejoice, Yay',
+			'Do not Repeat Yourself',
+			'Do Required Yoga',
+			'Do Reach Yup'
+		],
+		
+		correctAnswer: 'Do not Repeat Yourself'
 	},
 	{
 		question: "What is line height?",
-		answers: {
-			a: 'Height between lines',
-			b: 'Height of line text',
-			c: 'Height of header'
-		},
-		correctAnswer: 'a'
+		answers: [
+			'Height between lines',
+			'Height of line text',
+			'Height of header',
+			'Height of body'
+		],
+		correctAnswer: 'Height between lines'
 
 
 	},
 	{question: "What is a sudo class?",
-	answers: {
-		a: 'Judo class',
-		b: 'Fake class',
-		c: 'Special class'
-	},
-	correctAnswer: 'b'
+	answers: [
+		'Judo class',
+		'Fake class',
+		'Special class',
+		'Art class'
+	],
+	correctAnswer: 'Fake class'
 },
 {
 	question: "What does <p> mean?",
-	answers: {
-		a: 'Paragraph element',
-		b: 'Page element',
-		c: 'Parentheses element'
-	},
-	correctAnswer: 'a'
+	answers: [
+		'Paragraph element',
+		'Page element',
+		'Parentheses element',
+		'Parent element'
+	],
+	correctAnswer: 'Paragraph element'
 }
 ];
 // function showQuestions(questions, quizContainer){
@@ -165,3 +187,6 @@ submitButton.onclick = function(){
 }
 
 
+function showResults(){
+	quizContainer.style.display ="none"
+}
