@@ -27,23 +27,58 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 }
 var myQuestions = [
 	{
-		question: "What is 10/2?",
+		question: "Which one is a coding language?",
 		answers: {
-			a: '3',
-			b: '5',
-			c: '115'
+			a: 'JavaScript',
+			b: 'JavaCoffee',
+			c: 'JavaSchool'
+		},
+		correctAnswer: 'a'
+	},
+	{
+		question: "What is NOT a coding language?",
+		answers: {
+			a: 'HTML',
+			b: 'C++',
+			c: 'PDQ'
+		},
+		correctAnswer: 'c'
+	}
+	question: "What does DRY stand for in coding?",
+		answers: {
+			a: 'Develop, Rejoice, Yay',
+			b: 'Do not Repeat Yourself',
+			c: 'Do Required Yoga'
 		},
 		correctAnswer: 'b'
 	},
 	{
-		question: "What is 30/3?",
+		question: "What is line height?",
 		answers: {
-			a: '3',
-			b: '5',
-			c: '10'
+			a: 'Height between lines',
+			b: 'Height of line text',
+			c: 'Height of header'
 		},
-		correctAnswer: 'c'
-	}
+		correctAnswer: 'a'
+
+
+	}question: "What is a sudo class?",
+	answers: {
+		a: 'Judo class',
+		b: 'Fake class',
+		c: 'Special class'
+	},
+	correctAnswer: 'b'
+},
+{
+	question: "What does <p> mean?",
+	answers: {
+		a: 'Paragraph element',
+		b: 'Page element',
+		c: 'Parentheses element'
+	},
+	correctAnswer: 'a'
+}
 ];
 function showQuestions(questions, quizContainer){
 	// we'll need a place to store the output and the answer choices
