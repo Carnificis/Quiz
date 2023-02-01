@@ -1,16 +1,21 @@
 var quizContainer = document.getElementById('quiz');
 var resultsContainer = document.getElementById('results');
 var submitButton = document.getElementById('submit');
+var question = document.querySelector(".quiz_header")
+var options = document.querySelectorAll(".option")
+quizContainer.style.display ="none"
+resultsContainer.style.display="none"
+var currentQ = 0
 
 
-generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
 
 
-
-function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
-
-	function showQuestions(questions, quizContainer){
+	function showQuestions(){
 		// code will go here
+		question.innerText = myQuestions[currentQ].question
+		for(let i =0;i<4;i++){
+			options[i].textContent = myQuestions[currentQ].answers[i]
+		}
 	}
 
 	function showResults(questions, quizContainer, resultsContainer){
@@ -18,22 +23,18 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 	}
 
 	// show the questions
-	showQuestions(questions, quizContainer);
 
-	// when user clicks submit, show results
-	submitButton.onclick = function(){
-		showResults(questions, quizContainer, resultsContainer);
-	}
-}
+
 var myQuestions = [
 	{
 		question: "Which one is a coding language?",
-		answers: {
-			a: 'JavaScript',
-			b: 'JavaCoffee',
-			c: 'JavaSchool'
-		},
-		correctAnswer: 'a'
+		answers: [
+			'JavaScript',
+			 'JavaCoffee',
+			 'JavaSchool',
+			 'JavaPuzzle'
+		],
+		correctAnswer: '0'
 	},
 	{
 		question: "What is NOT a coding language?",
@@ -43,8 +44,8 @@ var myQuestions = [
 			c: 'PDQ'
 		},
 		correctAnswer: 'c'
-	}
-	question: "What does DRY stand for in coding?",
+	},
+		{question: "What does DRY stand for in coding?",
 		answers: {
 			a: 'Develop, Rejoice, Yay',
 			b: 'Do not Repeat Yourself',
@@ -62,7 +63,8 @@ var myQuestions = [
 		correctAnswer: 'a'
 
 
-	}question: "What is a sudo class?",
+	},
+	{question: "What is a sudo class?",
 	answers: {
 		a: 'Judo class',
 		b: 'Fake class',
@@ -80,75 +82,86 @@ var myQuestions = [
 	correctAnswer: 'a'
 }
 ];
-function showQuestions(questions, quizContainer){
-	// we'll need a place to store the output and the answer choices
-	var output = [];
-	var answers;
+// function showQuestions(questions, quizContainer){
+  
 
-	// for each question...
-	for(var i=0; i<questions.length; i++){
+
+
+
+
+// 	// we'll need a place to store the output and the answer choices
+// 	var output = [];
+// 	var answers;
+
+// 	// for each question...
+// 	for(var i=0; i<questions.length; i++){
 		
-		// first reset the list of answers
-		answers = [];
+// 		// first reset the list of answers
+// 		answers = [];
 
-		// for each available answer to this question...
-		for(letter in questions[i].answers){
+// 		// for each available answer to this question...
+// 		for(letter in questions[i].answers){
 
-			// ...add an html radio button
-			answers.push(
-				'<label>'
-					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
-					+ letter + ': '
-					+ questions[i].answers[letter]
-				+ '</label>'
-			);
-		}
+// 			// ...add an html radio button
+// 			answers.push(
+// 				'<label>'
+// 					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
+// 					+ letter + ': '
+// 					+ questions[i].answers[letter]
+// 				+ '</label>'
+// 			);
+// 		}
 
-		// add this question and its answers to the output
-		output.push(
-			'<div class="question">' + questions[i].question + '</div>'
-			+ '<div class="answers">' + answers.join('') + '</div>'
-		);
-	}
+// 		// add this question and its answers to the output
+// 		output.push(
+// 			'<div class="question">' + questions[i].question + '</div>'
+// 			+ '<div class="answers">' + answers.join('') + '</div>'
+// 		);
+// 	}
 
-	// finally combine our output list into one string of html and put it on the page
-	quizContainer.innerHTML = output.join('');
+// 	// finally combine our output list into one string of html and put it on the page
+// 	quizContainer.innerHTML = output.join('');
 
-    showQuestions(questions, quizContainer);
+//     showQuestions(questions, quizContainer);
 
-    function showResults(questions, quizContainer, resultsContainer){
+//     function showResults(questions, quizContainer, resultsContainer){
 	
-        // gather answer containers from our quiz
-        var answerContainers = quizContainer.querySelectorAll('.answers');
+//         // gather answer containers from our quiz
+//         var answerContainers = quizContainer.querySelectorAll('.answers');
         
-        // keep track of user's answers
-        var userAnswer = '';
-        var numCorrect = 0;
+//         // keep track of user's answers
+//         var userAnswer = '';
+//         var numCorrect = 0;
         
-        // for each question...
-        for(var i=0; i<questions.length; i++){
+//         // for each question...
+//         for(var i=0; i<questions.length; i++){
     
-            // find selected answer
-            userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+//             // find selected answer
+//             userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
             
-            // if answer is correct
-            if(userAnswer===questions[i].correctAnswer){
-                // add to the number of correct answers
-                numCorrect++;
+//             // if answer is correct
+//             if(userAnswer===questions[i].correctAnswer){
+//                 // add to the number of correct answers
+//                 numCorrect++;
                 
-                // color the answers green
-                answerContainers[i].style.color = 'lightgreen';
-            }
-            // if answer is wrong or blank
-            else{
-                // color the answers red
-                answerContainers[i].style.color = 'red';
-            }
-        }
+//                 // color the answers green
+//                 answerContainers[i].style.color = 'lightgreen';
+//             }
+//             // if answer is wrong or blank
+//             else{
+//                 // color the answers red
+//                 answerContainers[i].style.color = 'red';
+//             }
+//         }
     
-        // show number of correct answers out of total
-        resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
-    }
-    submitButton.onclick = function(){
-        showResults(questions, quizContainer, resultsContainer);
+//         // show number of correct answers out of total
+//         resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+//     }
+//}
+submitButton.onclick = function(){
+	quizContainer.style.display ="block"
+	submitButton.style.display ="none"
+	showQuestions()
 }
+
+
