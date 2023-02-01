@@ -3,8 +3,14 @@ var resultsContainer = document.getElementById('results');
 var submitButton = document.getElementById('submit');
 var question = document.querySelector(".quiz_header")
 var options = document.querySelectorAll(".option")
+var timer = document.querySelector("#timer")
+var correct = document.querySelector("#Correct")
+
 quizContainer.style.display ="none"
 resultsContainer.style.display="none"
+
+var timerObj;
+var timerCount = 60;
 var score = 0
 var currentQ = 0
 for(let i =0;i<4;i++){
@@ -26,8 +32,10 @@ for(let i =0;i<4;i++){
 		console.log(event.target.textContent)
 		if(event.target.textContent == myQuestions[currentQ].correctAnswer){
 			score +=5
+			correct.textContent ="Correct"
 		}else{
-
+			timerCount -= 5
+			correct.textContent ="Wrong"
 		}
 		if(currentQ < myQuestions.length-1){
 			currentQ++;
@@ -180,13 +188,23 @@ var myQuestions = [
 //         resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
 //     }
 //}
-submitButton.onclick = function(){
+submitButton.onclick = function(event){
+	event.preventDefault()
 	quizContainer.style.display ="block"
 	submitButton.style.display ="none"
+	timerObj = setInterval(function(){
+		timer.textContent = timerCount;
+		if(timerCount > 1){
+			timerCount--
+		}else{
+			showResults()
+		}
+	},1000)
 	showQuestions()
 }
 
 
 function showResults(){
 	quizContainer.style.display ="none"
+	clearInterval(timerObj)
 }
