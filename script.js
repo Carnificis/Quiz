@@ -27,7 +27,7 @@ function showQuestions() {
 function evaluateResults(event) {
   console.log(event.target.textContent);
   if (event.target.textContent == myQuestions[currentQ].correctAnswer) {
-    score += 5;
+    saveScore += 5;
     correct.textContent = "Correct";
   } else {
     timerCount -= 5;
@@ -112,21 +112,23 @@ function showResults() {
 quizContainer.style.display = "none";
 clearInterval(timerObj);
 resultsContainer.style.display = "block";
-//   console.log(timer);
+   console.log(timer);
   var user = input.value;
 
-//   console.log(user);
-//   score.push({
- //    initials: user,
-  //   score: timer,
+   //console.log(user);
+   //score.push({
+     //initials: user,
+    // score: timer,
   // });
 }
 saveScore.addEventListener("click", function(){
 console.log(input.value)
 })
 
-localStorage.setItem("score",saveScore)
+localStorage.setItem("score",score)
 console.localStorage
+correct.textContent = "High score"
+//display.console.log
 //function showResults()
 // console.log(timer)
 // var user= input.value
