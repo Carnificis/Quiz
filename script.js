@@ -124,6 +124,9 @@ resultsContainer.style.display = "block";
 saveScore.addEventListener("click", function(){
 console.log(input.value)
 })
+
+localStorage.setItem("score",saveScore)
+console.localStorage
 //function showResults()
 // console.log(timer)
 // var user= input.value
